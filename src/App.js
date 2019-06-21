@@ -1,11 +1,11 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import GroupDivider from './components/GroupDivider/GroupDivider';
+import RosterContainer from './components/Roster/RosterContainer';
 
 function App() {
   return (
     <Container>
-      <GroupDivider />
+      <RosterContainer />
     </Container>
   );
 }

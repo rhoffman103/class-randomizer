@@ -28,25 +28,28 @@ const randomizeGroups = ({ groupSize = 0, rosterState = [] }) => {
     const decrementingStudents = shuffle(rosterState);
     const groups = [];
 
-    for (let i = 0; i < numOfGroups; i++) {
-        const group = {
-            id: uniqueId(),
-            groupNumber: i + 1,
-            members: [],
-        }
-        for (let j = 0; j < groupSize; j++) {
-            group.members.push(decrementingStudents.pop())
-        }
-        groups.push(group);
-    };
+    if (groupSize !== '0') {
 
-    if (remainder > 0) {
-        const decrementingGroups = shuffle(groups)
+        for (let i = 0; i < numOfGroups; i++) {
+            const group = {
+                id: uniqueId(),
+                groupNumber: i + 1,
+                members: [],
+            }
+            for (let j = 0; j < groupSize; j++) {
+                group.members.push(decrementingStudents.pop())
+            }
+            groups.push(group);
+        };
 
-        for (let i = 0; i < remainder; i++) {
-            const randomGroupIndex = groups.indexOf(decrementingGroups.pop())
-            groups[randomGroupIndex].members.push(decrementingStudents.pop())
-        }
+        if (remainder > 0) {
+            const decrementingGroups = shuffle(groups)
+
+            for (let i = 0; i < remainder; i++) {
+                const randomGroupIndex = groups.indexOf(decrementingGroups.pop())
+                groups[randomGroupIndex].members.push(decrementingStudents.pop())
+            }
+        };
     };
 
     return groups;

@@ -1,32 +1,18 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useReducer, useContext } from 'react';
 import Row from 'react-bootstrap/Row';
 import DividerForm from './DividerForm';
 import RosterContext from '../../context/roster-context';
-import june2019roster from '../../rosters/june2019';
 import GroupList from './GroupList';
 import groupsReducer from '../../reducers/groups';
 
 const GroupDivider = () => {
     
-    const [rosterState, setRoster] = useState([]);
+    const { rosterState } = useContext(RosterContext)  
     const [groupState, groupsDispatch] = useReducer(groupsReducer, []);
-    const [groupSize, setGroupSize] = useState(0);
-            
-    useEffect(() => {
-        setRoster(june2019roster);
-    }, []);
-    
-    useEffect(() => {
-        groupsDispatch({
-            type: 'RANDOMIZE_GROUPS',
-            groupSize,
-            rosterState
-        })
-    }, [groupSize]);
 
     return(
-        <RosterContext.Provider value={{ groupState, setGroupSize }}>
-            <div className="group-divider">
+        <RosterContext.Provider value={{ groupState, rosterState, groupsDispatch }}>
+            <div className="group-divider m-2">
                 <Row>
                     <h2 className="m-2">Group Divider</h2>
                 </Row>
@@ -39,6 +25,6 @@ const GroupDivider = () => {
             </div>
         </RosterContext.Provider>
     );
-}
+};
 
 export default GroupDivider;
