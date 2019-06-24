@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { Spinner, Container, Table } from 'react-bootstrap'
+import { Spinner, Container, Row, Col } from 'react-bootstrap'
 
 class Assignments extends Component {
 
@@ -37,25 +37,41 @@ componentDidMount() {
 
         return(
             <Container>
-                <h2>Assignments</h2>
-                <h3>Completed</h3>
-                {this.state.completedAssignments ? this.state.completedAssignments.map(elem => {
-                    return( <div>
-                            <p>{elem.title}</p>
-                            <p>{elem.requiredForGraduation ? "Yes" : "No"}</p>
-                            </div>
-                            )
-                }) : <Spinner animation="border" />}
-                <h3>This Week</h3>
-                <p>{this.state.currentWeekAssignments ? this.state.currentWeekAssignments : "Breathe deep, nothing this week"}</p>
-                <h3>Upcoming</h3>
-                {this.state.completedAssignments ? this.state.upcomingAssignments.map(elem => {
-                    return( <div>
-                            <p>{elem.title}</p>
-                            <p>Required? {elem.required ? "Yes" : "No"}</p>
-                            </div>
-                            )
-                }) : <Spinner animation="border" />}
+            <h2 className="text-center">Assignments</h2>
+                <Row>
+                    <Col>
+                        <h3>Completed</h3>
+                        <ul>
+                        {this.state.completedAssignments ? this.state.completedAssignments.map(elem => {
+                            return( 
+                                    <li key={elem.title}>
+                                        <p>{elem.title}</p>
+                                        <p>Required? {elem.required ? "Yes" : "No"}</p>
+                                    </li>
+                                    
+                                    )
+                        }) : <Spinner animation="border" />}
+                        </ul>
+                    </Col>
+                    <Col>
+                        <h3>This Week</h3>
+                        <p>{this.state.currentWeekAssignments ? this.state.currentWeekAssignments : "Breathe deep, nothing this week"}</p>
+                    </Col>
+                    <Col>
+                        <h3>Upcoming</h3>
+                        <ul>
+                        {this.state.completedAssignments ? this.state.upcomingAssignments.map(elem => {
+                            return( 
+                                <li key={elem.title}>
+                                    <p>{elem.title}</p>
+                                    <p>Required? {elem.required ? "Yes" : "No"}</p>
+                                    <p>Due: {moment(elem.dueDate).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
+                                </li>
+                                )
+                        }) : <Spinner animation="border" />}
+                        </ul>
+                    </Col>
+                </Row>
             </Container>
         )
     }
