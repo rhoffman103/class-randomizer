@@ -20,8 +20,8 @@ const RosterContainer = () => {
                 </Row>
                 <Row>
                     <RosterSelector />
-                    <AttendanceSelector />
                 </Row>
+                <AttendanceSelector />
                 <Row>
                     <GroupDivider />
                 </Row>

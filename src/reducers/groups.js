@@ -1,3 +1,6 @@
+export const RANDOMIZE_GROUPS = 'RANDOMIZE_GROUPS';
+export const GROUP_CHECKBOXES = 'GROUP_CHECKBOXES'
+
 const uniqueId = () => `id-${Math.random().toString(36).substr(2, 16)}`;
 
 const shuffle = (arr) => {
@@ -41,13 +44,34 @@ const randomizeGroups = ({ groupSize = 0, rosterState = [] }) => {
     return groups;
 };
 
+const groupCheckboxColumns = (action) => {
+    const colList = [];
+    
+    if (action.state.roster) {
+        const cols = 6
+        const roster = action.state.roster;
+        const decrementingRoster = [...roster];
+        const studentsPerCol = Math.ceil(roster.length / cols);
+        for (let i = 0; i < cols; i++) {
+            const group = [];
+            for (let j = 0; j < studentsPerCol; j++) {
+                group.push(decrementingRoster.shift());
+            }
+            colList.push(group);
+        }
+    };
+    return colList;
+};
+
 const groupsReducer = (state, action) => {
     switch(action.type) {
-        case 'RANDOMIZE_GROUPS':
+        case RANDOMIZE_GROUPS:
             return randomizeGroups(action);
+        case GROUP_CHECKBOXES:
+            return groupCheckboxColumns(action);
         default:
             return state;
     }
-}
+};
 
 export default groupsReducer;
