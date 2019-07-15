@@ -21,7 +21,7 @@ const RosterSelector = () => {
                 <Form.Control as="select" onChange={(e) => setRoster(e.currentTarget.value)}>
                     <option defaultValue value="null">select roster</option>
                     {rosters.map((roster, index) => {
-                        return <option key={`id-${roster.name}-${index}`} value={index}>{roster.name}</option>
+                        return <option key={`id-${roster.cohort}-${index}`} value={index}>{roster.cohort}</option>
                     })}
                 </Form.Control>
             </Form.Group>

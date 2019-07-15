@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import Row from 'react-bootstrap/Row';
 import RosterSelector from './RosterSelector';
+import AttendanceSelector from './AttendanceSelector';
 import RosterContext from '../../context/roster-context';
 import Rosters from '../../rosters';
 import GroupDivider from '../GroupDivider/GroupDivider';
@@ -9,7 +10,7 @@ import rosterReducer from '../../reducers/roster';
 const RosterContainer = () => {
 
     const rosters = useState(Rosters);
-    const [rosterState, rosterDispatch] = useReducer(rosterReducer, [{ name: 'poop', members: ['caca'] }])
+    const [rosterState, rosterDispatch] = useReducer(rosterReducer, [])
 
     return (
         <RosterContext.Provider value={{ rosters: rosters[0], rosterState, rosterDispatch }}>
@@ -19,6 +20,7 @@ const RosterContainer = () => {
                 </Row>
                 <Row>
                     <RosterSelector />
+                    <AttendanceSelector />
                 </Row>
                 <Row>
                     <GroupDivider />

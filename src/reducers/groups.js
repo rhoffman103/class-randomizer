@@ -1,31 +1,17 @@
 const uniqueId = () => `id-${Math.random().toString(36).substr(2, 16)}`;
 
-const shuffle = (array) => {
-        
-    let mutatedArray = array.map(element => element)
-    let currentIndex = mutatedArray.length;
-    let temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = mutatedArray[currentIndex];
-        mutatedArray[currentIndex] = mutatedArray[randomIndex];
-        mutatedArray[randomIndex] = temporaryValue;
-    }
-
-    return mutatedArray;
+const shuffle = (arr) => {
+    const clonedArray = [...arr];
+    return clonedArray.sort(() => 0.5 - Math.random());
 };
 
 const randomizeGroups = ({ groupSize = 0, rosterState = [] }) => {
 
-    const numOfGroups = Math.floor(rosterState.length / groupSize);
-    const remainder = rosterState.length % groupSize;
-    const decrementingStudents = shuffle(rosterState);
+    const presentList = rosterState.filter((student) => student.isPresent)
+    const headCount =  presentList.length
+    const numOfGroups = Math.floor(headCount / groupSize);
+    const remainder = headCount % groupSize;
+    const decrementingStudents = shuffle(presentList);
     const groups = [];
 
     if (groupSize !== '0') {

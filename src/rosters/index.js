@@ -1,4 +1,6 @@
-const rosters = [
+const uniqueId = () => `id-${Math.random().toString(36).substr(2, 16)}`;
+
+const simpleRosters = [
     {
         name: 'June 2019',
         roster: [
@@ -56,5 +58,15 @@ const rosters = [
         ]
     }
 ]
+
+let rosters = []
+
+simpleRosters.forEach((roster) => {
+    const newRoster = roster.roster.map(student => {
+        return { name: student, isPresent: true, id: uniqueId() }
+    })
+
+    rosters.push({ cohort: roster.name, roster: newRoster })
+}); 
 
 export default rosters;

@@ -16,7 +16,7 @@ const GroupList = () => {
                 <ul>
                     {group.members.map((member, j) => {
                         return (
-                            <li key={`${group.id}-${j}`}>{member}</li>
+                            <li key={`${group.id}-${j}`}>{member.name}</li>
                         )
                     })}
                 </ul>   
