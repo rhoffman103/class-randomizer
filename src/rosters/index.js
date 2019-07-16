@@ -67,8 +67,6 @@ simpleRosters.forEach((roster) => {
     })
 
     rosters.push({ cohort: roster.name, roster: newRoster })
-}); 
-
-console.log(rosters)
+});
 
 export default rosters;
