@@ -21,7 +21,7 @@ const RosterContainer = () => {
                 <Row>
                     <RosterSelector />
                 </Row>
-                <AttendanceSelector />
+                    <AttendanceSelector />
                 <Row>
                     <GroupDivider />
                 </Row>

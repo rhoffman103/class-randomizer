@@ -48,14 +48,14 @@ const groupCheckboxColumns = (action) => {
     const colList = [];
     
     if (action.state.roster) {
-        const cols = 6
+        const cols = 3
         const roster = action.state.roster;
         const decrementingRoster = [...roster];
         const studentsPerCol = Math.ceil(roster.length / cols);
         for (let i = 0; i < cols; i++) {
             const group = [];
             for (let j = 0; j < studentsPerCol; j++) {
-                group.push(decrementingRoster.shift());
+                if (decrementingRoster.length) group.push(decrementingRoster.shift());
             }
             colList.push(group);
         }
