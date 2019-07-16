@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import Row from 'react-bootstrap/Row';
 import RosterSelector from './RosterSelector';
-import AttendanceSelector from './AttendanceSelector';
+import AttendanceSelector from './../Attendance/AttendanceSelector';
 import RosterContext from '../../context/roster-context';
 import Rosters from '../../rosters';
 import GroupDivider from '../GroupDivider/GroupDivider';
@@ -20,8 +20,8 @@ const RosterContainer = () => {
                 </Row>
                 <Row>
                     <RosterSelector />
-                    <AttendanceSelector />
                 </Row>
+                    <AttendanceSelector />
                 <Row>
                     <GroupDivider />
                 </Row>
