@@ -28,8 +28,8 @@ const AttendanceSelector = () => {
     };
 
     const CheckboxCols = ({ groups }) => (
-        groups.map((group, i) => (
-            <Col className="col-12 col-sm-6 col-md-4" key={`form-col-${i}`}>
+        groups.map(({ group, orderClasses }, i) => (
+            <Col className={`col-12 col-sm-6 col-md-4 ${orderClasses}`} key={`form-col-${i}`}>
                 <Form>
                     { group.map((student) => (
                         <Form.Check

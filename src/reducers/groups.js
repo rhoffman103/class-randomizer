@@ -46,6 +46,7 @@ const randomizeGroups = ({ groupSize = 0, rosterState = [] }) => {
 
 const groupCheckboxColumns = (action) => {
     const colList = [];
+    const orderClasses = ['order-1', 'order-3 order-md-2', 'order-2 order-md-3']
     
     if (action.state.roster) {
         const cols = 3
@@ -57,7 +58,7 @@ const groupCheckboxColumns = (action) => {
             for (let j = 0; j < studentsPerCol; j++) {
                 if (decrementingRoster.length) group.push(decrementingRoster.shift());
             }
-            colList.push(group);
+            colList.push({ group, orderClasses: orderClasses[i] });
         }
     };
     return colList;
